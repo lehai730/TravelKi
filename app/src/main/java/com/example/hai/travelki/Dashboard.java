@@ -22,6 +22,7 @@ public class Dashboard extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard);
 
         userBalance = (EditText) findViewById(R.id.user_bal);
+        userBalance.setKeyListener(null);
         TopUp = (Button) findViewById(R.id.TopUpBtn);
         userBalance.setText(String.valueOf(testBalance));
         if (getIntent().hasExtra("from login")) {
