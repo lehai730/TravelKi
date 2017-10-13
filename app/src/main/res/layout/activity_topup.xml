@@ -32,6 +32,13 @@
             android:onClick="onConfirm"
             android:text="Confirm" />
 
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onCancel"
+            android:text="Cancel" />
+
 
     </LinearLayout>
 </LinearLayout>

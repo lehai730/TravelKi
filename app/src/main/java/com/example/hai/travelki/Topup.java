@@ -27,10 +27,20 @@ public class Topup extends AppCompatActivity {
 
     }
     public void onConfirm(View view){
-        TopupAmount = Integer.parseInt(Topup_layout.getText().toString());
-        TotalAmount = TotalAmount+TopupAmount;
+
+        if(!Topup_layout.getText().toString().isEmpty()){
+            TopupAmount = Integer.parseInt(Topup_layout.getText().toString());
+            TotalAmount = TotalAmount+TopupAmount;
+        }
+
         Intent replyBalance = new Intent(this, Dashboard.class);
         Intent returnMessage = replyBalance.putExtra("returnMessage", TotalAmount);
+        setResult(RESULT_OK, replyBalance);
+        finish() ; // close this activity.
+    }
+
+    public void onCancel(View view){
+        Intent replyBalance = new Intent(this, Dashboard.class);
         setResult(RESULT_OK, replyBalance);
         finish() ; // close this activity.
     }

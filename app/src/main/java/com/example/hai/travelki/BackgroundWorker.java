@@ -23,13 +23,14 @@ import java.net.URLEncoder;
 public class BackgroundWorker extends AsyncTask<String,Void,String> {
     Context context;
     AlertDialog alertDialog;
+    String results = "";
     BackgroundWorker (Context ctx){
         context = ctx;
     }
     @Override
     protected String doInBackground(String... params) {
         String type = params[0];
-        String login_url = "http://10.132.121.71/travelki/login.php";
+        String login_url = "http://10.132.121.170/travelki/login.php";
         if(type.equals("login")){
             try {
                 String user_name = params[1];
@@ -53,7 +54,7 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
                 InputStream inputStream = httpURLConnection.getInputStream();
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
 
-                String results = "";
+
                 String line = "";
 
                 while ((line = bufferedReader.readLine())!=null) {
@@ -90,4 +91,9 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
     protected void onProgressUpdate(Void... values) {
         super.onProgressUpdate(values);
     }
+
+    public String getResult(){
+        return results;
+    }
 }
+

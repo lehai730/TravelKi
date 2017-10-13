@@ -13,6 +13,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText UsernameEt, PasswordEt;
     String username, password, type, output;
     Button SigninBtn;
+    DBHandler mydb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +22,7 @@ public class LoginActivity extends AppCompatActivity {
         SigninBtn = (Button) findViewById(R.id.SignInBtn);
         UsernameEt = (EditText) findViewById(R.id.username);
         PasswordEt = (EditText) findViewById(R.id.password);
+        mydb = new DBHandler(this,null,null,1);
 
 
     }
@@ -31,14 +33,19 @@ public class LoginActivity extends AppCompatActivity {
         type = "login";
         BackgroundWorker backgroundWorker = new BackgroundWorker(this);
         backgroundWorker.execute(type, username, password);
-
+        String output = backgroundWorker.getResult();
         //checkc if login is successful
-        if(output == "login success"){
-            Intent startDashB = new Intent(this,Dashboard.class);
-            startDashB.putExtra("from login",username);
-            startActivity(startDashB);
-        }
-        Toast.makeText(this, "LOGIN FAILED", Toast.LENGTH_SHORT).show();
+        //SQL external database tutorial
+        //http://www.codebind.com/android-tutorials-and-examples/android-mysql-database-tutorial-android-login-php-mysql/
+        https://www.learn2crack.com/2016/04/android-login-registration-php-mysql-server.html
 
-    }
+        Toast.makeText(this, "LOGIN AS "+username, Toast.LENGTH_SHORT).show();
+        Intent startDashB = new Intent(this,Dashboard.class);
+        startDashB.putExtra("from login",username);
+        startActivity(startDashB);
+        }
+
+
+
 }
+
